@@ -160,8 +160,8 @@ class LoggingMiddleware(object):
         # in order to avoid other threads overwriting the original self.cached_request_body reference,
         # is this done to preserve the original value in case it is mutated during the get_response invocation?
         cached_request_body = request.body
+        self.process_request(request, None, cached_request_body)
         response = self.get_response(request)
-        self.process_request(request, response, cached_request_body)
         self.process_response(request, response)
         return response
 
